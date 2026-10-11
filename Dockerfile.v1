@@ -1,0 +1,8 @@
+FROM python:3.12-alpine
+WORKDIR /sayakhat-auto
+COPY . .
+RUN python tools/build_report.py
+ENV REPORT_FILE="out/report.json"
+ENV BRANCH="Atok"
+ENV TOP="10"
+CMD ["python", "app/server.py"]
