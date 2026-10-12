@@ -3,6 +3,6 @@ WORKDIR /sayakhat-auto
 COPY . .
 RUN python tools/build_report.py
 ENV REPORT_FILE="out/report.json"
-ENV BRANCH="Atok"
-ENV TOP="10"
+ENV BRANCH="Raiymbek"
+ENV TOP="5"
 CMD ["python", "app/server.py"]
