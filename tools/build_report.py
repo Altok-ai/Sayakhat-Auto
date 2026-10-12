@@ -1,14 +1,15 @@
-"""Shymbulak Rent: data/records.csv файлынан out/report.json есебін жасайды."""
+"""Sayakhat Auto: data/records.csv файлынан out/report.json есебін жасайды."""
 import csv
 import hashlib
 import json
 from collections import defaultdict
+from datetime import date
 from pathlib import Path
  
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data" / "records.csv"
 OUT = ROOT / "out" / "report.json"
-VARIANT = 1
+VARIANT = 9
  
  
 def load_rows():
@@ -27,32 +28,29 @@ def money(value):
  
  
 def build(rows):
-    by_item = defaultdict(lambda: [0, 0, 0])
-    by_day = defaultdict(lambda: [0, 0])
+    by_service = defaultdict(lambda: [0, 0, 0])
     for r in rows:
-        hours, amount = int(r["hours"]), int(r["amount"])
-        item = by_item[r["item"]]
-        item[0] += 1
-        item[1] += hours
-        item[2] += amount
-        day = by_day[r["date"]]
-        day[0] += 1
-        day[1] += amount
-    total = sum(int(r["amount"]) for r in rows)
+        days = (date.fromisoformat(r["closed"]) - date.fromisoformat(r["opened"])).days
+        s = by_service[r["service"]]
+        s[0] += 1
+        s[1] += int(r["cost"])
+        s[2] += days
+    total = sum(v[1] for v in by_service.values())
+    all_days = sum(v[2] for v in by_service.values())
     summary = [
         {"label": "Жалпы түсім", "value": money(total)},
-        {"label": "Жалға беру саны", "value": len(rows)},
-        {"label": "Жалпы сағат", "value": sum(int(r["hours"]) for r in rows)},
+        {"label": "Тапсырыс саны", "value": len(rows)},
+        {"label": "Жөндеудің орташа ұзақтығы", "value": f"{all_days / len(rows):.1f} күн"},
     ]
-    items = sorted(by_item.items(), key=lambda kv: -kv[1][2])
-    days = sorted(by_day.items(), key=lambda kv: (-kv[1][1], kv[0]))
+    services = sorted(by_service.items(), key=lambda kv: -kv[1][1])
+    slow = sorted(by_service.items(), key=lambda kv: (-kv[1][2] / kv[1][0], kv[0]))
     tables = [
-        {"title": "Жабдық түрлері бойынша түсім",
-         "columns": ["Жабдық", "Жалға беру", "Сағат", "Түсім"],
-         "rows": [[k, v[0], v[1], money(v[2])] for k, v in items]},
-        {"title": "Ең табысты күндер",
-         "columns": ["Күн", "Жалға беру", "Түсім"],
-         "rows": [[k, v[0], money(v[1])] for k, v in days]},
+        {"title": "Жұмыс түрлері бойынша түсім",
+         "columns": ["Жұмыс түрі", "Тапсырыс", "Түсім"],
+         "rows": [[k, v[0], money(v[1])] for k, v in services]},
+        {"title": "Жөндеудің орташа ұзақтығы",
+         "columns": ["Жұмыс түрі", "Орташа күн"],
+         "rows": [[k, round(v[2] / v[0], 1)] for k, v in slow]},
     ]
     return summary, tables
  
@@ -62,8 +60,8 @@ def main():
     summary, tables = build(rows)
     report = {
         "variant": VARIANT,
-        "org": "Shymbulak Rent",
-        "title": "Шаңғы жабдықтарын жалға беру есебі",
+        "org": "Sayakhat Auto",
+        "title": "Автосервистің тапсырыс-нарядтары",
         "records": len(rows),
         "control_code": control_code(rows),
         "summary": summary,

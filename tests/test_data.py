@@ -1,15 +1,17 @@
-"""Shymbulak Rent: деректердің бизнес-ережелерін тексеретін тесттер."""
+"""Sayakhat Auto: деректердің бизнес-ережелерін тексеретін тесттер."""
 import csv
 import json
 import unittest
+import re
+from datetime import date
 from pathlib import Path
  
 ROOT = Path(__file__).resolve().parent.parent
 with open(ROOT / "data" / "records.csv", encoding="utf-8-sig", newline="") as f:
     ROWS = list(csv.DictReader(f))
  
-COLUMNS = ["rental_id", "date", "client", "item", "hours", "tariff", "amount"]
-TARIFF = {"ski": 3000, "snowboard": 3500, "boots": 1200, "helmet": 800, "goggles": 600}
+COLUMNS = ["order_id", "plate", "service", "opened", "closed", "cost"]
+PLATE = re.compile(r"^[0-9]{3}[A-Z]{3}02$")
  
  
 class DataRulesTest(unittest.TestCase):
@@ -24,21 +26,21 @@ class DataRulesTest(unittest.TestCase):
         self.assertEqual(report["records"], len(ROWS))
         self.assertEqual(len(report["control_code"]), 8)
  
-    def test_tariff_from_price_list(self):
+    def test_plate_format(self):
         for line, r in enumerate(ROWS, start=2):
-            with self.subTest(line=line):
-                self.assertIn(r["item"], TARIFF)
-                self.assertEqual(int(r["tariff"]), TARIFF[r["item"]])
+            with self.subTest(line=line, plate=r["plate"]):
+                self.assertRegex(r["plate"], PLATE)
  
-    def test_hours_between_1_and_10(self):
+    def test_closed_not_before_opened(self):
         for line, r in enumerate(ROWS, start=2):
             with self.subTest(line=line):
-                self.assertTrue(1 <= int(r["hours"]) <= 10)
+                self.assertGreaterEqual(date.fromisoformat(r["closed"]),
+                                        date.fromisoformat(r["opened"]))
  
-    def test_amount_is_hours_times_tariff(self):
+    def test_cost_positive(self):
         for line, r in enumerate(ROWS, start=2):
             with self.subTest(line=line):
-                self.assertEqual(int(r["amount"]), int(r["hours"]) * int(r["tariff"]))
+                self.assertGreater(int(r["cost"]), 0)
  
  
 if __name__ == "__main__":

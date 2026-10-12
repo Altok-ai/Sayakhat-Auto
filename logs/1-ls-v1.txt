@@ -17,6 +17,7 @@ records.csv
 
 /sayakhat-auto/logs:
 1-build-v1.txt
+1-ls-v1.txt
 
 /sayakhat-auto/out:
 report.json
