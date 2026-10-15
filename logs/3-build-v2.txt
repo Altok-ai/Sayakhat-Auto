@@ -1,0 +1,69 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 419B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-alpine
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [build 1/5] FROM docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
+#4 resolve docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4 0.0s done
+#4 DONE 0.0s
+
+#5 [stage-2 2/4] WORKDIR /sayakhat-auto
+#5 CACHED
+
+#6 [build 2/5] WORKDIR /src
+#6 CACHED
+
+#7 [internal] load build context
+#7 transferring context: 247B 0.0s done
+#7 DONE 0.0s
+
+#8 [stage-2 3/4] COPY app/server.py .
+#8 DONE 0.1s
+
+#9 [build 3/5] COPY tools/ tools/
+#9 DONE 0.1s
+
+#10 [build 4/5] COPY data/ data/
+#10 DONE 0.0s
+
+#11 [build 5/5] RUN python tools/build_report.py
+#11 0.670 out/report.json дайын: 35 жазба, бақылау коды C6E3A582
+#11 DONE 0.7s
+
+#12 [test 1/2] COPY tests/ tests/
+#12 DONE 0.0s
+
+#13 [test 2/2] RUN python -m unittest discover -s tests -v
+#13 0.728 test_closed_not_before_opened (test_data.DataRulesTest.test_closed_not_before_opened) ... ok
+#13 0.728 test_columns (test_data.DataRulesTest.test_columns) ... ok
+#13 0.728 test_cost_positive (test_data.DataRulesTest.test_cost_positive) ... ok
+#13 0.729 test_own_records_added (test_data.DataRulesTest.test_own_records_added) ... ok
+#13 0.729 test_plate_format (test_data.DataRulesTest.test_plate_format) ... ok
+#13 0.729 test_report_created (test_data.DataRulesTest.test_report_created) ... ok
+#13 0.730 
+#13 0.730 ----------------------------------------------------------------------
+#13 0.730 Ran 6 tests in 0.002s
+#13 0.730 
+#13 0.730 OK
+#13 DONE 0.8s
+
+#14 [stage-2 4/4] COPY --from=test /src/out/report.json .
+#14 DONE 0.0s
+
+#15 exporting to image
+#15 exporting layers 0.1s done
+#15 exporting manifest sha256:22c988dd5a612e9832e88f54aae19ef585a39052b91cb16eab3c52db4bf46a63 done
+#15 exporting config sha256:0b61e7d6b6c5c33648d7827493ddf55bd08f83a9339599edc30f7be9c21c0fad done
+#15 exporting attestation manifest sha256:3770716edd3e00a07683c358753fc164f4d24ba867e581343ede1a5bfc3e8806 done
+#15 exporting manifest list sha256:119eef6e3913f87078b82dd7a97abaec0855129e52367d028506711b0219d6ca done
+#15 naming to docker.io/library/sayakhat-auto:v2 done
+#15 unpacking to docker.io/library/sayakhat-auto:v2 0.0s done
+#15 DONE 0.2s
