@@ -1,0 +1,60 @@
+CONTAINER ID   IMAGE                  COMMAND                  CREATED         STATUS         PORTS                                         NAMES
+70b592a71864   sayakhat-auto-web:v1   "/docker-entrypoint.…"   3 minutes ago   Up 3 minutes   0.0.0.0:8609->80/tcp, [::]:8609->80/tcp       auto-web
+53815913c907   sayakhat-auto:v3       "python server.py"       3 minutes ago   Up 3 minutes   0.0.0.0:8509->8080/tcp, [::]:8509->8080/tcp   auto-api
+88efb63f6fa6   registry:2.8.3         "/entrypoint.sh /etc…"   4 days ago      Up 6 hours     0.0.0.0:5004->5000/tcp, [::]:5004->5000/tcp   sozdik-registry
+[
+    {
+        "Name": "auto-net",
+        "Id": "04767235cbe9890b917246334e0bba2722f5aea0d677992751f86669ebb56094",
+        "Created": "2026-10-19T16:10:16.13600717+05:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "172.21.0.0/16",
+                    "Gateway": "172.21.0.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {},
+        "Labels": {},
+        "Containers": {
+            "53815913c907d7007a62a60f36fc66b93d53181e9de4ec99b4047911972bc562": {
+                "Name": "auto-api",
+                "EndpointID": "7c359e426592363c6243b9d2158dcee6a71fb4d2bc58c4a64d27b5963cdb3aed",
+                "MacAddress": "ca:1a:62:1a:3a:9e",
+                "IPv4Address": "172.21.0.2/16",
+                "IPv6Address": ""
+            },
+            "70b592a718648162a0e822cc6dd7db74eb03054a37ec0b1b4ab6f7253249c199": {
+                "Name": "auto-web",
+                "EndpointID": "fcb4de3abd8e3900cba4230ea25651e7d0fd2370684c38bd5125f370df399e26",
+                "MacAddress": "6a:6e:8e:7d:e0:52",
+                "IPv4Address": "172.21.0.3/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "172.21.0.0/16": {
+                        "IPsInUse": 5,
+                        "DynamicIPsAvailable": 65531
+                    }
+                }
+            }
+        }
+    }
+]

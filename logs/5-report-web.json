@@ -1,0 +1,90 @@
+{
+  "variant": 9,
+  "org": "Sayakhat Auto",
+  "title": "Автосервистің тапсырыс-нарядтары",
+  "records": 35,
+  "control_code": "C6E3A582",
+  "summary": [
+    {
+      "label": "Жалпы түсім",
+      "value": "1 984 000 ₸"
+    },
+    {
+      "label": "Тапсырыс саны",
+      "value": 35
+    },
+    {
+      "label": "Жөндеудің орташа ұзақтығы",
+      "value": "2.9 күн"
+    }
+  ],
+  "tables": [
+    {
+      "title": "Жұмыс түрлері бойынша түсім",
+      "columns": [
+        "Жұмыс түрі",
+        "Тапсырыс",
+        "Түсім"
+      ],
+      "rows": [
+        [
+          "engine repair",
+          7,
+          "1 287 000 ₸"
+        ],
+        [
+          "suspension",
+          5,
+          "311 000 ₸"
+        ],
+        [
+          "brake pads",
+          6,
+          "154 000 ₸"
+        ],
+        [
+          "oil change",
+          7,
+          "107 000 ₸"
+        ],
+        [
+          "tire service",
+          5,
+          "68 000 ₸"
+        ]
+      ]
+    },
+    {
+      "title": "Жөндеудің орташа ұзақтығы",
+      "columns": [
+        "Жұмыс түрі",
+        "Орташа күн"
+      ],
+      "rows": [
+        [
+          "engine repair",
+          6.6
+        ],
+        [
+          "suspension",
+          4.2
+        ],
+        [
+          "brake pads",
+          2.0
+        ],
+        [
+          "diagnostics",
+          1.8
+        ],
+        [
+          "oil change",
+          1.4
+        ]
+      ]
+    }
+  ],
+  "branch": "Raiymbek",
+  "top": 5,
+  "container": "53815913c907"
+}
