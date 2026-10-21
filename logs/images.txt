@@ -1,0 +1,42 @@
+IMAGE                                      ID             DISK USAGE   CONTENT SIZE   EXTRA
+atok777/dastarqan:1                        c2e6f7f16756       83.2MB         20.7MB        
+atok777/dastarqan:1.1                      c2e6f7f16756       83.2MB         20.7MB        
+atok777/dastarqan:1.1.0                    c2e6f7f16756       83.2MB         20.7MB        
+atok777/dastarqan:latest                   c2e6f7f16756       83.2MB         20.7MB        
+atok777/sozdik-bot:1                       864484f0b833       83.2MB         20.7MB        
+atok777/sozdik-bot:1.1                     864484f0b833       83.2MB         20.7MB        
+atok777/sozdik-bot:1.1.0                   864484f0b833       83.2MB         20.7MB        
+atok777/sozdik-bot:latest                  864484f0b833       83.2MB         20.7MB        
+dastarqan-app:1.0.0                        396b79507484       83.2MB         20.7MB        
+dastarqan-regtool:1.0                      e51fbea848f5       83.2MB         20.7MB        
+golden/python:3.12                         ae1d656c3663       83.2MB         20.7MB        
+hello-world:latest                         5e2309035332       25.9kB         9.49kB        
+python:3.12-alpine                         1b668429b351       83.6MB         21.3MB        
+registry.local:5004/golden/python:3.12     ae1d656c3663       83.2MB         20.7MB        
+registry.local:5004/sozdik/app:1           864484f0b833       83.2MB         20.7MB        
+registry.local:5004/sozdik/app:1.0         b8b84b5cb7dd       83.2MB         20.7MB        
+registry.local:5004/sozdik/app:1.0.0       c14c971d4f88       83.2MB         20.7MB   U    
+registry.local:5004/sozdik/app:1.0.1       b8b84b5cb7dd       83.2MB         20.7MB        
+registry.local:5004/sozdik/app:1.1         864484f0b833       83.2MB         20.7MB        
+registry.local:5004/sozdik/app:1.1.0       864484f0b833       83.2MB         20.7MB        
+registry.local:5004/sozdik/app:latest      864484f0b833       83.2MB         20.7MB        
+registry.local:5009/dastarqan/app:1        c2e6f7f16756       83.2MB         20.7MB        
+registry.local:5009/dastarqan/app:1.0      6bd33e838051       83.2MB         20.7MB        
+registry.local:5009/dastarqan/app:1.0.0    396b79507484       83.2MB         20.7MB        
+registry.local:5009/dastarqan/app:1.0.1    6bd33e838051       83.2MB         20.7MB        
+registry.local:5009/dastarqan/app:1.1      c2e6f7f16756       83.2MB         20.7MB        
+registry.local:5009/dastarqan/app:1.1.0    c2e6f7f16756       83.2MB         20.7MB        
+registry.local:5009/dastarqan/app:latest   c2e6f7f16756       83.2MB         20.7MB        
+registry.local:5009/golden/python:3.12     d46de4e43d70       83.2MB         20.7MB        
+registry:2.8.3                             a3d8aaa63ed8       37.4MB         10.3MB   U    
+sayakhat-auto-web:v1                       7ef7751493b2        102MB         28.8MB        
+sayakhat-auto:v1                           9094490f18a5       84.8MB           21MB        
+sayakhat-auto:v2                           4dd265a8f94c         83MB         20.6MB        
+sayakhat-auto:v3                           8ba8ec65a6ee         83MB         20.6MB        
+sozdik-app:1.0.0                           c14c971d4f88       83.2MB         20.7MB   U    
+takiya-api:test                            916f095d939b        105MB         26.2MB        
+takiya-api:v1                              15cb1f9a464a         83MB         20.6MB   U    
+takiya-api:v3                              db426ae666d2         83MB         20.6MB   U    
+takiya-api:v4                              07c0be19e91d         83MB         20.6MB        
+takiya-api:v5                              eb2e89173846         83MB         20.6MB   U    
+takiya-web:v1                              4355bddaefbc         83MB         20.6MB   U    
