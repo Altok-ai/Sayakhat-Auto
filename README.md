@@ -48,4 +48,14 @@ v1 образы 84.8MB, v2 образы 83MB, яғни айырма бар бо�
 
 ## 4. Қиындықтар
 
-3-кезеңде көпсатылы Dockerfile жинап көргенде образ құрылмай, мынадай қате шықты: `AssertionError: Regex didn't match: '^[0-9]{3}[A-Z]{3}02$' not found in '123ABC01'` және `ERROR: process "/bin/sh -c python -m unittest discover -s tests -v" did not complete successfully: exit code: 1`. Себебі `records.csv` ішіне нөмірі `123ABC01` болатын қате жазба қосқанмын, ал тест аймақ коды `02` болуын талап етеді. Оны шешу үшін 37-жолдағы қате жазбаны жойдым да, жинауды қайта іске қостым. Сонда 35 жазбамен 6 тесттің бәрі өтіп, `sayakhat-auto:v2` образы сәтті құрылды.
+Nginx образын жинап жатқанда базалық образ жүктелмей, мынадай қате шықты:
+
+ERROR: failed to build: failed to solve: nginx:alpine: failed to resolve source metadata for docker.io/library/nginx:alpine: failed to do request: Head "https://registry-1.docker.io/v2/library/nginx/manifests/alpine": dial tcp: lookup registry-1.docker.io on 127.0.0.53:53: server misbehaving
+
+Алғашында Dockerfile-да қате бар шығар деп ойладым, бірақ қатеде lookup registry-1.docker.io ... server misbehaving деп тұр, яғни Docker Hub мекенжайын таба алмаған. Мәселе Dockerfile-да емес, желіде (интернет пен DNS) екен. Желі жұмыс істеп кеткен соң, сол команданы қайта іске қостым да, образ сәтті жиналды.
+
+Басқа жиі қателер. Жұмыс барысында мына қателер де жиі кездесті:
+
+docker build командасының соңына . (контекст жолын) қоюды жиі ұмытып кеттім, сондықтан Docker requires 1 argument деген қате берді. Әр жолы команданы соңына . қосып қайта жаздым.
+Docker-ді алғаш іске қосқанда docker.sock бойынша permission denied қатесі шықты, себебі пайдаланушымның Docker-ге рұқсаты болмаған.
+Нөл кезеңінде кейбір файлдар бос болып қалған, себебі редакторда сақтамай қойыппын. Файлдарды қайта сақтап, толтырып, қайта коммит жасадым.
